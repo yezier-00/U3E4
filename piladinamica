@@ -1,0 +1,76 @@
+package Logica;
+
+
+import Creador.NodoPilaA;
+import NodoPilaB.NodoPilaB;
+import java.util.List;
+
+public class PilaDinamica {
+     NodoPilaA cimaA;
+     NodoPilaB cimaB;
+ int tamaño,num,aux;
+ boolean palabra=false;
+ 
+    public boolean EstavaciaA(){
+      return  cimaA==null;
+    }
+    public boolean EstaVaciaB(){
+    return cimaB==null;
+    }
+    
+    public void Empujar(List lista){ 
+       if((cimaA==null)||(cimaA!=null)){
+       for(int i=0;i<lista.size();i++){
+          num =(int) lista.get(i);
+           if((i==0)||(num>cimaA.elemento)){
+               NodoPilaA nodo = new NodoPilaA (num);
+               nodo.siguiente = cimaA;
+               cimaA=nodo;
+               tamaño++;
+           
+       }else if (num<=cimaA.elemento){
+           NodoPilaB nodo =new NodoPilaB (num);
+           nodo.siguiente=cimaB;
+           cimaB=nodo;
+           tamaño++;
+       }
+           
+      }
+    }
+  }
+    
+    public void SacrPila(){
+        if(EstavaciaA()){
+            System.out.println(" PILA ESTA VACIA");
+        }else{
+    cimaA=cimaA.siguiente;
+    tamaño--;
+        }
+    }
+    public void mostrarPila(){
+        System.out.println("===LISTA DE ELEMENTOS DE LA PILA A===");
+        if(EstavaciaA()){
+            System.out.println("LA PILA ESTA VACIA INGRESE DATOS");
+              }else{
+    NodoPilaA recorreA=cimaA;
+    while(recorreA!=null){
+        
+        System.out.println(recorreA.elemento);
+        recorreA=recorreA.siguiente;
+        
+        }
+       }
+         System.out.println("===LISTA DE ELEMENTOS DE LA PILA B===");
+        if(EstaVaciaB()){
+            System.out.println("PILA VACIA");
+              }else{
+    NodoPilaB recorreB=cimaB;
+    while(recorreB!=null){
+        System.out.println(recorreB.elemento);
+        recorreB=recorreB.siguiente;
+        }
+       }
+    }
+    
+    
+}
